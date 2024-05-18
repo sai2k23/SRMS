@@ -18,7 +18,7 @@
   </head>
   <body>
     <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="http://www.amcharts.com/lib/3/radar.js"></script>
+    <script src="http://www.amcharts.com/lib/3/serial.js"></script>
     <script src="http://www.amcharts.com/lib/3/themes/light.js"></script>
     <script src="../animate.min.js"></script>
 
@@ -26,51 +26,53 @@
 
     <script>
       var chart = AmCharts.makeChart("chartdiv", {
-        "type": "radar",
+        "type": "serial",
         "theme": "light",
         "dataProvider": generateChartData(),
         "graphs": [{
-          "bullet": "round",
-          "bulletSizeField": "bullet1",
-          "lineThickness": 2,
           "valueField": "value",
-          "type": "line",
-          "alphaField": "alpha1",
-          "dashLengthField": "dash1"
+          "type": "column",
+          "fillAlphas": 1,
+          "alphaField": "alpha1"
         }, {
-          "bullet": "round",
-          "bulletSizeField": "bullet2",
-          "lineThickness": 2,
           "valueField": "value2",
-          "type": "line",
-          "alphaField": "alpha2",
-          "dashLengthField": "dash2"
+          "fillAlphas": 1,
+          "type": "column",
+          "alphaField": "alpha2"
         }],
         "valueAxes": [{
           "minimum": 0,
-          "maximum": 100
+          "maximum": 400
         }],
-        "categoryField": "category"
+        "chartCursor": {},
+        "categoryAxis": {
+          "parseDates": true,
+          "minPeriod": "mm"
+        },
+        "zoomOutOnDataUpdate": false,
+        "categoryField": "date"
       });
 
 
       function generateChartData() {
         var chartData = [];
+        var firstDate = new Date( 2012, 0, 1 );
+        firstDate.setDate( firstDate.getDate() - 1000 );
+        firstDate.setHours( 0, Math.floor(Math.random() * 10), 0, 0 );
 
-        for ( var i = 0; i < 25; i++ ) {
-          var a = Math.floor( Math.random() * 100 );
-          var b = Math.floor( Math.random() * 100 );
+        for ( var i = 0; i < 10; i++ ) {
+          var newDate = new Date( firstDate );
+          newDate.setHours( 0, i, 0, 0 );
+
+          var a = Math.round( Math.random() * ( 200 + i ) ) + 100 + i;
+          var b = Math.round( Math.random() * ( 200 + i ) ) + 100 + i;
 
           chartData.push( {
-            category: "" + i,
+            date: newDate,
             value: a,
             value2: b,
-            bullet1: Math.floor(Math.random() * 10),
-            bullet2: Math.floor(Math.random() * 10),
             alpha1: (Math.random() < 0.5 ? 0 : 1),
-            alpha2: (Math.random() < 0.5 ? 0 : 1),
-            dash1: Math.floor(Math.random() * 20),
-            dash2: Math.floor(Math.random() * 20)
+            alpha2: (Math.random() < 0.5 ? 0 : 1)
           } );
         }
 

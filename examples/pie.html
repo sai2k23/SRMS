@@ -18,7 +18,7 @@
   </head>
   <body>
     <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="http://www.amcharts.com/lib/3/funnel.js"></script>
+    <script src="http://www.amcharts.com/lib/3/pie.js"></script>
     <script src="http://www.amcharts.com/lib/3/themes/light.js"></script>
     <script src="../animate.min.js"></script>
 
@@ -26,16 +26,14 @@
 
     <script>
       var chart = AmCharts.makeChart("chartdiv", {
-        "type": "funnel",
+        "type": "pie",
         "theme": "light",
         "dataProvider": generateChartData(),
         "valueField": "value",
         "titleField": "category",
+        "labelRadiusField": "labelRadius",
         "alphaField": "alpha",
-        "startDuration": 0,
-        "precision": 2,
-        "neckHeight": 150,
-        "neckWidth": 200
+        "startDuration": 0
       });
 
 
