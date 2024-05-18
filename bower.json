@@ -1,11 +1,11 @@
 {
-  "name": "amcharts3-export",
+  "name": "amcharts3-dataloader",
   "authors": [
     "amCharts <contact@amcharts.com>"
   ],
-  "description": "amCharts V3 Export plugin",
+  "description": "amCharts V3 Data Loader plugin",
   "main": [
-    "export.js"
+    "dataloader.js"
   ],
   "keywords": [
     "amcharts",
@@ -23,6 +23,6 @@
   "homepage": "https://www.amcharts.com/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/amcharts/export.git"
+    "url": "git://github.com/amcharts/dataloader.git"
   }
 }
